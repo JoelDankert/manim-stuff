@@ -7,8 +7,8 @@ class MainScene(Scene):
 
         title = Text("trigonometric identity", font_size=30, color=WHITE).shift([0,3.5,0])
         subtitle = Text("phase shift", font_size=20, color=WHITE).shift([0,3.15,0])
-        self.play(Create(title))
-        self.play(Create(subtitle))
+        self.play(Create(title,run_time=0.2))
+        self.play(Create(subtitle,run_time=0.2))
         
 
 
@@ -46,7 +46,7 @@ class MainScene(Scene):
         self.play(Create(graph),Create(sinlabel))
         self.play(Create(graph2),Create(coslabel))
         
-        self.wait(2)
+        self.wait(1)
 
         self.play(
             sinlabel.animate.shift(a.c2p(PI/2,0)[0]*LEFT*1.6),
@@ -59,7 +59,7 @@ class MainScene(Scene):
         veclabel = MathTex(r"+\frac{\pi}{2}").next_to(vec, UP*0.5).shift([-0.35,0,0])
         newvec = self.create_vector((PI/2,0) ,(PI/2,0) ,a)
         self.play(GrowArrow(vec))
-        self.wait(1)
+        self.wait(0.5)
         self.play(Create(veclabel,run_time=1))
         self.wait(2)
         self.play(
