@@ -57,11 +57,14 @@ class MainScene(Scene):
             y_range=[0, max(values) + 1, 10],  # Ticks every 1
             y_length=5
         )
-
-        self.play(Create(bar_chart), run_time=5)
-
-        # Get individual bars as VGroup
         bars_group = bar_chart.bars
+        bar_chart.bars.set_opacity(0)
+
+        self.play(Create(bar_chart), run_time=1)
+        bar_chart.bars.set_opacity(1)
+        self.play(DrawBorderThenFill(bars_group),run_time=5)
+        self.wait(3)
+        
 
         for i in range(5):
             bars_group = playsingleshuffle(self,bars_group,5-i)
