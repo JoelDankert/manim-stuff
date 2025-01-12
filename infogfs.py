@@ -70,7 +70,7 @@ def bubblesort(self,bars=10,func=lambda x:5*0.96**x,explain=False):
     bar_chart = BarChart(
         values,
         bar_colors=colors,
-        y_range=[0, max(values) + 1, 5], 
+        y_range=[0, max(values) + 0.5, 5], 
         y_length=5
     )
     bars_group = bar_chart.bars
@@ -130,10 +130,16 @@ def bubblesort(self,bars=10,func=lambda x:5*0.96**x,explain=False):
     self.play(FadeOut(bar_chart))
     self.clear()
 
+
+def setTitle(self,text,fontsize,dist):
+    main_text = Text(text, font_size=fontsize)
+    top_of_canvas = config.frame_height / 2
+    self.play(DrawBorderThenFill(main_text), run_time=3)
+    self.play(main_text.animate.shift(UP * (top_of_canvas - dist)))
+    return main_text
+
 def intro(self):
-    main_text = Text("Sortierverfahren", font_size=100)
-    self.play(DrawBorderThenFill(main_text), run_time=5)
-    self.play(main_text.animate.shift(UP * 2))
+    main_text = setTitle(self,"Sortierverfahren",100,2)
 
     sub_text = Text("Informatik GFS", font_size=50)
     sub_text.next_to(main_text, DOWN, aligned_edge=LEFT)
@@ -146,23 +152,83 @@ def intro(self):
     grade_text = Text("11", font_size=100)
     grade_text.next_to(main_text, DOWN, aligned_edge=RIGHT)
     self.play(Write(grade_text), run_time=3)
+    image = ImageMobject(r"E:\tempdefault\manim shit\manim-shit\banner.png")
+    image.scale(0.8)
+    image.next_to(main_text,DOWN,aligned_edge=RIGHT)
+    image.shift(LEFT*1.25)
+    
+    self.play(GrowFromCenter(image),run_time=3)
     self.wait(5)
-    self.play(FadeOut(main_text,grade_text,author_text,sub_text))
+    self.play(FadeOut(*self.mobjects))
+
+def F1_definition(self):
+    main_text = setTitle(self,"Definition",50,1)
+
+    
+    second_text = Paragraph(
+        "Sortierverfahren ordnen Elemente einer Liste oder",
+        "eines Arrays in eine definierte Reihenfolge. (z.B. aufsteigend)",
+        width=12,
+        alignment="center",
+        )
+    
+    second_text.to_edge(UP)
+    second_text.shift(DOWN*2)
+    self.play(Write(second_text))
+    self.wait(5)
+    self.play(second_text.animate.shift(UP*0.7))
+
+    Highlight = VGroup(
+            second_text[0][30:44],
+            second_text[1][0:11]
+        )
+    self.play(Highlight.animate.set_color(RED))
+    self.wait(2)
+
+    bars=10;
+    values = getlist(bars)
+
+    bar_chart = BarChart(
+        values,
+        bar_colors=[WHITE,WHITE],
+        y_range=[0, max(values) + 0.5, 1], 
+        y_length=5
+    )
+    bars_group = bar_chart.bars
+    bar_chart.scale(0.8)
+    bar_chart.shift(DOWN*1.5)
+    bar_chart.bars.set_opacity(0)
+
+    self.play(Create(bar_chart), run_time=1)
+    bar_chart.bars.set_opacity(1)
+    bars_old=bars_group.copy()
+    self.play(DrawBorderThenFill(bars_group),run_time=5)
+
+    playsingleshuffle(self,bars_group,3)
+    self.wait(5)
+    self.play(Transform(bars_group,bars_old),run_time=3)
+    self.wait(3)
+    self.play(FadeOut(*self.mobjects))
+
 
 
 
 class MainScene(Scene):
     def construct(self):
-        
+        self.final()
+
+    def final(self):
         intro(self)
         self.wait(3)
+        F1_definition(self)
+        self.wait(5)
 
         
-
+        setTitle(self,"Bubble Sort (5)",50,1)
         bubblesort(self,5,lambda x:max(5*0.90**x,0.02),True)
         self.wait(3)
+        setTitle(self,"Bubble Sort (15)",50,1)
         bubblesort(self,15,lambda x:3*0.94**x+0.05,False)
 
         self.wait(3)
-
-
+    
