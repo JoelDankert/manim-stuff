@@ -2,6 +2,9 @@ from manim import *
 import numpy as np
 import random
 
+def customwait(self,time):
+    self.wait(time)
+
 def getlist(count):
     list = []
     for i in range(1, count + 1):
@@ -80,16 +83,16 @@ def bubblesort(self,bars=10,func=lambda x:5*0.96**x,explain=False):
     bar_chart.bars.set_opacity(1)
     self.play(DrawBorderThenFill(bars_group),run_time=5)
 
-    self.wait(1.3*3)
+    customwait(1.3*3)
     
 
     for i in range(5):
         bars_group = playsingleshuffle(self,bars_group,(5-i)/2)
 
     if(explain):
-        self.wait(1.3*15)
+        customwait(1.3*15)
     else:
-        self.wait(1.3*3)
+        customwait(1.3*3)
     
 
     sorted_bars = sorted(bars_group, key=lambda bar: bar.get_x())
@@ -116,16 +119,16 @@ def bubblesort(self,bars=10,func=lambda x:5*0.96**x,explain=False):
             waittime=func(iterations)
 
             if(sorted_group[i_bar].height>sorted_group[i_bar+1].height):
-                self.wait(1.3*waittime/2)
+                customwait(1.3*waittime/2)
                 sorted_group=swaptwo(self,sorted_group,i_bar,i_bar+1,waittime,prevcol1,prevcol2)
                 
                 swapped=True
             else:
-                self.wait(1.3*waittime)
+                customwait(1.3*waittime)
                 sorted_group[i_bar].set_color(prevcol1)
                 sorted_group[i_bar+1].set_color(prevcol2)
 
-    self.wait(1.3*8)
+    customwait(1.3*8)
 
     self.play(FadeOut(bar_chart))
     self.clear()
@@ -247,7 +250,7 @@ def StableUnstableGraphic(self):
         )
     )
 
-    self.wait(1.3*5)
+    customwait(1.3*5)
 
     self.play(
         LaggedStart(
@@ -258,15 +261,15 @@ def StableUnstableGraphic(self):
     )
 
 
-    self.wait(1.3*5)
+    customwait(1.3*5)
 
     self.play(*[GrowArrow(arrow) for arrow in stable_arrows])
 
-    self.wait(1.3 * 3)
+    customwait(1.3 * 3)
 
     self.play(*[GrowArrow(arrow) for arrow in unstable_arrows])
 
-    self.wait(1.3*5)
+    customwait(1.3*5)
 
 def intro(self):
     main_text = setTitle(self,"Sortierverfahren",100,2)
@@ -288,7 +291,7 @@ def intro(self):
     image.shift(LEFT*1.25)
     
     self.play(GrowFromCenter(image),run_time=3)
-    self.wait(1.3*5)
+    customwait(1.3*5)
     self.play(FadeOut(*self.mobjects))
 
 
@@ -306,7 +309,7 @@ def F1_definition(self):
     second_text.to_edge(UP)
     second_text.shift(DOWN*2)
     self.play(Write(second_text))
-    self.wait(1.3*5)
+    customwait(1.3*5)
     self.play(second_text.animate.shift(UP*0.7))
 
     Highlight = VGroup(
@@ -314,7 +317,7 @@ def F1_definition(self):
             second_text[1][0:11]
         )
     self.play(Highlight.animate.set_color(RED))
-    self.wait(1.3*2)
+    customwait(1.3*2)
 
     bars=10
     values = getlist(bars)
@@ -336,9 +339,9 @@ def F1_definition(self):
     self.play(DrawBorderThenFill(bars_group),run_time=5)
 
     playsingleshuffle(self,bars_group,3)
-    self.wait(1.3*5)
+    customwait(1.3*5)
     self.play(Transform(bars_group,bars_old),run_time=3)
-    self.wait(1.3*3)
+    customwait(1.3*3)
     self.play(FadeOut(*self.mobjects))
 
 def F2_usages(self):
@@ -355,7 +358,7 @@ def F2_usages(self):
     second_text.to_edge(UP)
     second_text.shift(DOWN*2)
     self.play(Write(second_text))
-    self.wait(1.3*5)
+    customwait(1.3*5)
     self.play(second_text.animate.shift(UP*0.7))
 
     Highlight = VGroup(
@@ -363,7 +366,7 @@ def F2_usages(self):
             second_text[1][3:12]
         )
     self.play(Highlight.animate.set_color(RED))
-    self.wait(1.3*2)
+    customwait(1.3*2)
 
     list_text = Paragraph(
         "> Softwareentwicklung - Allgemein",
@@ -381,11 +384,11 @@ def F2_usages(self):
     Highlight.set_color(ORANGE)
 
     self.play(Write(list_text[0]))
-    self.wait(1.3*10)
+    customwait(1.3*10)
     self.play(Write(list_text[1]))
-    self.wait(1.3*10)
+    customwait(1.3*10)
     self.play(Write(list_text[2]))
-    self.wait(1.3*10)
+    customwait(1.3*10)
 
     tex_text = Tex(
             r"\(\rightarrow\) Sortierung nach einem \textit{key}",  # Italicize "key"
@@ -397,12 +400,12 @@ def F2_usages(self):
     # Add and animate the text
     self.play(Write(tex_text))
     
-    self.wait(1.3*2)
+    customwait(1.3*2)
     box = SurroundingRectangle(tex_text, color=RED, buff=0.3)
     self.play(Create(box),run_time=3)
 
 
-    self.wait(1.3*3)
+    customwait(1.3*3)
     self.play(FadeOut(*self.mobjects))
 
 def F3_keys(self):
@@ -418,7 +421,7 @@ def F3_keys(self):
     second_text.to_edge(UP)
     second_text.shift(DOWN*2)
     self.play(Write(second_text))
-    self.wait(1.3*5)
+    customwait(1.3*5)
     self.play(second_text.animate.shift(UP*0.7))
 
     Highlight = VGroup(
@@ -426,7 +429,7 @@ def F3_keys(self):
             second_text[1][9:16]
         )
     self.play(Highlight.animate.set_color(RED))
-    self.wait(1.3*2)
+    customwait(1.3*2)
 
     list_text = Paragraph(
         "> Zahlen - Alter, Dauer, Temperatur, ...",
@@ -444,11 +447,11 @@ def F3_keys(self):
     Highlight.set_color(ORANGE)
 
     self.play(Write(list_text[0]))
-    self.wait(1.3*10)
+    customwait(1.3*10)
     self.play(Write(list_text[1]))
-    self.wait(1.3*10)
+    customwait(1.3*10)
     self.play(Write(list_text[2]))
-    self.wait(1.3*10)
+    customwait(1.3*10)
 
 
     tex_text = Tex(
@@ -461,7 +464,7 @@ def F3_keys(self):
     # Add and animate the text
     self.play(Write(tex_text))
     
-    self.wait(1.3*8)
+    customwait(1.3*8)
     self.play(FadeOut(*self.mobjects))
 
 def F4_ausprobieren(self):
@@ -476,7 +479,7 @@ def F4_ausprobieren(self):
     second_text.to_edge(UP)
     second_text.shift(DOWN*2)
     self.play(Write(second_text))
-    self.wait(1.3*2)
+    customwait(1.3*2)
     self.play(second_text.animate.shift(UP*0.7))
 
     image = ImageMobject(r"E:\tempdefault\manim shit\manim-shit\cards.png")
@@ -494,7 +497,7 @@ def F4_ausprobieren(self):
     third_text.shift(DOWN*1.7)
     self.play(Write(third_text))
 
-    self.wait(1.3*5)
+    customwait(1.3*5)
     fourth_text = Paragraph(
         "Probiert es aus!",
         width=8,
@@ -506,7 +509,7 @@ def F4_ausprobieren(self):
     fourth_text.shift(UP*0.25)
     self.play(Write(fourth_text))
 
-    self.wait(1.3*10)
+    customwait(1.3*10)
     self.play(FadeOut(*self.mobjects))
 
 def F5_stabilitaet(self):
@@ -522,39 +525,40 @@ def F5_stabilitaet(self):
     second_text.to_edge(UP)
     second_text.shift(DOWN*2)
     self.play(Write(second_text))
-    self.wait(1.3*2)
+    customwait(1.3*2)
     self.play(second_text.animate.shift(UP*0.7))
 
     StableUnstableGraphic(self)
 
-    self.wait(1.3*10)
+    
+
+    customwait(1.3*10)
     self.play(FadeOut(*self.mobjects))
 
 
 class MainScene(Scene):
     def construct(self):
-        F1_definition(self)
-        #self.final()
+        self.final()
 
     def final(self):
         intro(self)
-        self.wait(1.3*3)
+        customwait(1.3*3)
         F1_definition(self)
-        self.wait(1.3*3)
+        customwait(1.3*3)
         F2_usages(self)
-        self.wait(1.3*3)
+        customwait(1.3*3)
         F3_keys(self)
-        self.wait(1.3*3)
+        customwait(1.3*3)
         F4_ausprobieren(self)
-        self.wait(1.3*3)
+        customwait(1.3*3)
         F5_stabilitaet(self)
 
 
-        self.wait(1.3*3)
+        customwait(1.3*3)
         setTitle(self,"Bubble Sort (5)",50,1)
         bubblesort(self,5,lambda x:max(5*0.90**x,0.02),True)
-        self.wait(1.3*3)
+        customwait(1.3*3)
         setTitle(self,"Bubble Sort (15)",50,1)
         bubblesort(self,15,lambda x:3*0.94**x+0.05,False)
 
-        self.wait(1.3*3)
+        customwait(1.3*3)
