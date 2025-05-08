@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:E:/tempdefault/manim shit/manim-shit/media/videos/infogfs/480p15/partial_movie_files/IntroScene/1185818338_2933620839_223132457.mp4'
+file 'file:E:/tempdefault/manim shit/manim-shit/media/videos/infogfs/480p15/partial_movie_files/IntroScene/624642324_388702458_3707727229.mp4'
+file 'file:E:/tempdefault/manim shit/manim-shit/media/videos/infogfs/480p15/partial_movie_files/IntroScene/624642324_2021861750_2018170332.mp4'
+file 'file:E:/tempdefault/manim shit/manim-shit/media/videos/infogfs/480p15/partial_movie_files/IntroScene/624642324_3043881844_359687705.mp4'
+file 'file:E:/tempdefault/manim shit/manim-shit/media/videos/infogfs/480p15/partial_movie_files/IntroScene/624642324_1397115010_264596853.mp4'
+file 'file:E:/tempdefault/manim shit/manim-shit/media/videos/infogfs/480p15/partial_movie_files/IntroScene/624642324_1652070171_2959379731.mp4'
+file 'file:E:/tempdefault/manim shit/manim-shit/media/videos/infogfs/480p15/partial_movie_files/IntroScene/624642324_4121367549_2358810818.mp4'
