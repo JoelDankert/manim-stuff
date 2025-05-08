@@ -1,3 +1,4 @@
+
 from manim import *
 import numpy as np
 import random
@@ -219,8 +220,6 @@ def selectionsort(self,bars=10,func=lambda x:5*0.96**x,explain=False):
     self.play(FadeOut(bar_chart))
     self.clear()
 
-
-
 def setTitle(self,text,fontsize,dist):
     main_text = Text(text, font_size=fontsize)
     top_of_canvas = config.frame_height / 2
@@ -361,7 +360,7 @@ def StableUnstableGraphic(self):
 def intro(self):
     main_text = setTitle(self,"Sortierverfahren",100,2)
 
-    sub_text = Text("Informatik GFS", font_size=50)
+    sub_text = Text("Informatik GFS",font_size=50)
     sub_text.next_to(main_text, DOWN, aligned_edge=LEFT)
     
     author_text = Text("Joel Dankert", font_size=40)
@@ -885,7 +884,9 @@ def outro(self):
     hideall(self)
 
 
+
 # Scenes
+
 class F0_IntroScene(Scene):
     """Scene that only runs the intro function."""
     def construct(self):
@@ -949,3 +950,4 @@ class F11_SelectionSortZusammenfassung(Scene):
 class Flast_Outro(Scene):
     def construct(self):
         outro(self)
+
